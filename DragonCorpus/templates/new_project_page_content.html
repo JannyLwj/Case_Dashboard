@@ -1,0 +1,208 @@
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!--<div id="portlet-config" class="modal hide">-->
+
+    <!--<div class="modal-header">-->
+
+    <!--<button data-dismiss="modal" class="close" type="button"></button>-->
+
+    <!--<h3>portlet Settings</h3>-->
+
+    <!--</div>-->
+
+    <!--<div class="modal-body">-->
+
+    <!--<p>Here will be a configuration form</p>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <!--{% include 'base/theme.html' %}-->
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->
+
+                <h3 class="page-title">
+
+                    Add New Project
+
+                    <small></small>
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="{% url 'management:index'%}">Home</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">New Project</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li><a href="#">Add</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+
+                <div class="portlet box blue tabbable">
+
+                    <div class="portlet-title">
+
+                        <div class="caption">
+
+                            <i class="icon-reorder"></i>
+
+                            <span class="hidden-480">Create New Project</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body form">
+
+                        <div class="tabbable portlet-tabs">
+
+                            <ul class="nav nav-tabs">
+
+                                <li class="active"><a href="#portlet_tab1" data-toggle="tab">Default</a></li>
+
+                            </ul>
+
+                            <div class="tab-content">
+
+                                {%if user.email%}
+                                <div class="tab-pane active" id="portlet_tab1">
+
+                                    <!-- BEGIN FORM-->
+
+                                    <form action="{% url 'management:new_project' %}" class="form-horizontal"
+                                          method="post">
+                                        {% csrf_token %}
+                                        <div class="control-group">
+
+                                            <label class="control-label">Project Name</label>
+
+                                            <div class="controls">
+
+                                                <input id="project_name" name="project_name" type="text"
+                                                       placeholder="please input your project name"
+                                                       class="m-wrap large"/>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="control-group">
+
+                                            <label class="control-label">Project Description</label>
+
+                                            <div class="controls">
+
+                                                <textarea id="project_description" name="project_description"
+                                                          class="large m-wrap" rows="3"></textarea>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-actions">
+
+                                            <button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>
+
+                                            <button type="button" id="cancle" class="btn">Cancel</button>
+
+                                        </div>
+
+                                    </form>
+
+                                    <!-- END FORM-->
+
+                                </div>
+                                {%else%}
+                                <div class="tab-pane active">
+
+                                    <!-- BEGIN FORM-->
+
+                                    <label>You have no permission to create a new project.</label>
+
+                                    <!-- END FORM-->
+
+                                </div>
+                                {%endif%}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- END SAMPLE FORM PORTLET-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTENT-->
+
+    </div>
+
+    <!-- END PAGE CONTAINER-->
+
+</div>
+<script src="/static/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="/static/media/js/app.js" type="text/javascript"></script>
+<script src="/static/media/js/bootstrap.min.js"></script>
+
+
+<script>
+	$("#cancle").click(function () {
+		$("#project_name")[0].value="";
+		$("#project_description")[0].value=""
+	});
+
+
+</script>
